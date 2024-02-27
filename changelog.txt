@@ -1,0 +1,2 @@
+2/27/24
+created repo and moved star ratings into editable variables
