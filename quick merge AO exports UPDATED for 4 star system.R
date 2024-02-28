@@ -2,19 +2,18 @@ library(tidyverse)
 library(readr)
 library(tibble)
 
-
 ### ONLY CHANGE PARAMETERS HERE, DON'T CHANGE ANYTHING ELSE ###
-setwd("H:/MAIN Project Files/AAA DEVELOPMENT PROJECTS/000 DEVELOPMENT RESOURCES/CA/California Search Lists/SCE Q1 24/Tier 2 Exports") #Folder with a utility's csvs must use / NOT \ in filepaths
-file_list <- list.files(pattern = "Q124") # %>% Only change what's between " " that's your search cursor. Smart to do county
+setwd("H:/MAIN Project Files/AAA DEVELOPMENT PROJECTS/000 DEVELOPMENT RESOURCES/CA/California Search Lists/PG&E Q1 24/Tier 2 Exports") #Folder with a utility's csvs must use / NOT \ in filepaths
+file_list <- list.files(pattern = "Alameda") # %>% Only change what's between " " that's your search cursor. Smart to do county
 #  lapply(read_csv) #can ignore, line is for other uses
-filename <- "AO CA Search FO (q124) PG&E Tier 2.csv" # Sets your filename only change " " and leave extension as .csv use two digit state abbrev, ## to group, COUNTY to county, # to tier number
+filename <- "AO CA Search FT (Alameda) PG&E Tier 2.csv" # Sets your filename only change " " and leave extension as .csv use two digit state abbrev, ## to group, COUNTY to county, # to tier number
 tier <- "Tier 2" #change to whatever tier you're doing
 utility <- "PG&E" #change to utility name as you want it displayed in final sheet
 market <- "CA" #market you're in as two character abbrev
 status <- "Open" #status of leads
-Star1 <- "N/A"
-Star2 <- "LMI"
-Star3 <- "EC/CC"
+Star1 <- "N/A" #What does 1 star mean?
+Star2 <- "LMI" #what does 2 stars mean?
+Star3 <- "EC/CC" #what does 3 stars mean?
 ### NO MORE CHANGING ###
 
 refactor <- map_dfr(.x = set_names(file_list),
