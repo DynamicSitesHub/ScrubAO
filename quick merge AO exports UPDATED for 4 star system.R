@@ -48,7 +48,7 @@ add <- renamed %>%
              Phone = NA,
              `Other Phone` = NA,
              `Mobile` = NA,
-             `Site Lat/Long` = paste(renamed$Latitude,renamed$Longitude,sep=";")
+             `Site Lat/Long Coordinates` = paste(renamed$Latitude,renamed$Longitude,sep=";")
              )
 
 #for yes phone numbers no coords#colOrder <- c('First Name','Last Name','Company','Site Address','Site City','Site State','Site Zip Code','APN/PIN','Site Municipal','Site County','Buildable Area (Acres)','Lot Size','Street','Address Line 2','City (Mailing Address)','State (Mailing Address)','Zip (Mailing Address)','Phone','Other Phone','Mobile','Phone 1 (Site Address)','Phone 2 (Site Address)','Phone 3 (Site Address)','Phone 1 (Mailing Address)','Phone 2 (Mailing Address)','Phone 3 (Mailing Address)','Email','AO Project','Group','Site #','AO Link','Site Tier','Utility','Market','Lead Status','IRA Status')

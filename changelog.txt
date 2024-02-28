@@ -1,2 +1,4 @@
+2/28/24
+updated site lat/long -> site lat/long coordinates to match SF mapping
 2/27/24
 created repo and moved star ratings into editable variables
