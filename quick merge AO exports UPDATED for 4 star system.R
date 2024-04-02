@@ -3,17 +3,17 @@ library(readr)
 library(tibble)
 
 ### ONLY CHANGE PARAMETERS HERE, DON'T CHANGE ANYTHING ELSE ###
-setwd("H:/MAIN Project Files/AAA DEVELOPMENT PROJECTS/000 DEVELOPMENT RESOURCES/CA/California Search Lists/PG&E Q1 24/Tier 2 Exports") #Folder with a utility's csvs must use / NOT \ in filepaths
-file_list <- list.files(pattern = "Alameda") # %>% Only change what's between " " that's your search cursor. Smart to do county
+setwd("H:/MAIN Project Files/AAA DEVELOPMENT PROJECTS/000 DEVELOPMENT RESOURCES/VA/Dominion/Tier 2 Exports") #Folder with a utility's csvs must use / NOT \ in filepaths
+file_list <- list.files(pattern = "James City") # %>% Only change what's between " " that's your search cursor. Smart to do county
 #  lapply(read_csv) #can ignore, line is for other uses
-filename <- "AO CA Search FT (Alameda) PG&E Tier 2.csv" # Sets your filename only change " " and leave extension as .csv use two digit state abbrev, ## to group, COUNTY to county, # to tier number
+filename <- "AO VA Search CV (James City) Dominion Tier 2.csv" # Sets your filename only change " " and leave extension as .csv use two digit state abbrev, ## to group, COUNTY to county, # to tier number
 tier <- "Tier 2" #change to whatever tier you're doing
-utility <- "PG&E" #change to utility name as you want it displayed in final sheet
-market <- "CA" #market you're in as two character abbrev
+utility <- "Dominion" #change to utility name as you want it displayed in final sheet
+market <- "VA" #market you're in as two character abbrev
 status <- "Open" #status of leads
 Star1 <- "N/A" #What does 1 star mean?
-Star2 <- "LMI" #what does 2 stars mean?
-Star3 <- "EC/CC" #what does 3 stars mean?
+Star2 <- "EC/CC" #what does 2 stars mean?
+Star3 <- "Tier 1" #what does 3 stars mean?
 ### NO MORE CHANGING ###
 
 refactor <- map_dfr(.x = set_names(file_list),
@@ -28,13 +28,13 @@ refactor <- map_dfr(.x = set_names(file_list),
 #}
 
 merged <- dplyr::bind_rows(refactor)
-
+#for column names, the desired name is left, current name is right
 renamed <- merged %>% 
   rename (
     `Site County` = County,
     `AO Link` = `Asset Url`,
     `IRA Status` = `Star Rating`,
-    `Robust ID` = `Robust Id (Reportall)`
+    `Robust ID` = `Robust Id (Reportall)`,
   )
 add <- renamed %>% 
   add_column(Email = NA,
@@ -48,13 +48,16 @@ add <- renamed %>%
              Phone = NA,
              `Other Phone` = NA,
              `Mobile` = NA,
-             `Site Lat/Long Coordinates` = paste(renamed$Latitude,renamed$Longitude,sep=";")
+             `Site Lat/Long Coordinates` = paste(renamed$Latitude,renamed$Longitude,sep=";"),
+             `Substation` = paste0(merged$`Nearest Substation`, " Unconfirmed"),
+             `Distance to Substation` = paste0(merged$`Distance to Nearest Substation (mi)`, " Radial")
              )
 
-#for yes phone numbers no coords#colOrder <- c('First Name','Last Name','Company','Site Address','Site City','Site State','Site Zip Code','APN/PIN','Site Municipal','Site County','Buildable Area (Acres)','Lot Size','Street','Address Line 2','City (Mailing Address)','State (Mailing Address)','Zip (Mailing Address)','Phone','Other Phone','Mobile','Phone 1 (Site Address)','Phone 2 (Site Address)','Phone 3 (Site Address)','Phone 1 (Mailing Address)','Phone 2 (Mailing Address)','Phone 3 (Mailing Address)','Email','AO Project','Group','Site #','AO Link','Site Tier','Utility','Market','Lead Status','IRA Status')
+#for yes phone numbers no coords colOrder <- c('First Name','Last Name','Company','Site Address','Site City','Site State','Site Zip Code','APN/PIN','Site Municipal','Site County','Buildable Area (Acres)','Lot Size','Street','Address Line 2','City (Mailing Address)','State (Mailing Address)','Zip (Mailing Address)','Phone','Other Phone','Mobile','Phone 1 (Site Address)','Phone 2 (Site Address)','Phone 3 (Site Address)','Phone 1 (Mailing Address)','Phone 2 (Mailing Address)','Phone 3 (Mailing Address)','Email','AO Project','Group','Site #','AO Link','Site Tier','Utility','Market','Lead Status','IRA Status')
 #preserve data colOrder <- c('First Name','Last Name','Company','Site Address','Site City','Site State','Site Zip Code','APN/PIN','Site Municipal','Site County','Lot Size','Street','Address Line 2','City','State','Zip/Postal Code','City (Mailing Address)','State (Mailing Address)','Zip (Mailing Address)','Phone','Other Phone','Mobile','Phone 1 (Site Address)','Phone 2 (Site Address)','Phone 3 (Site Address)','Phone 1 (Mailing Address)','Phone 2 (Mailing Address)','Phone 3 (Mailing Address)','Email','AO Project','Group','Site #','AO Link','Site Tier','Utility','Market','Lead Status','IRA Status')
-#for yes phone numbers, yes coords#colOrder <- c('First Name','Last Name','Company','Site Address','Site City','Site State','Site Zip Code','APN/PIN','Site Municipal','Site County','Lot Size','Street','Address Line 2','City (Mailing Address)','State (Mailing Address)','Zip (Mailing Address)','Phone','Other Phone','Mobile','Phone 1 (Site Address)','Phone 2 (Site Address)','Phone 3 (Site Address)','Phone 1 (Mailing Address)','Phone 2 (Mailing Address)','Phone 3 (Mailing Address)','Email','AO Project','Group','Site #','AO Link','Site Tier','Utility','Market','Lead Status','IRA Status','Site Lat/Long', 'Robust ID')
-colOrder <- c('First Name','Last Name','Company','Site Address','Site City','Site State','Site Zip Code','APN/PIN','Site Municipal','Site County','Buildable Area (Acres) (acre)','Lot Size (acre)','Street','Address Line 2','City (Mailing Address)','State (Mailing Address)','Zip (Mailing Address)','Phone','Other Phone','Mobile','Email','AO Project','Group','Site #','AO Link','Site Tier','Utility','Market','Lead Status','IRA Status','Site Lat/Long Coordinates', 'Robust ID')
+#for yes phone numbers, yes coords colOrder <- c('First Name','Last Name','Company','Site Address','Site City','Site State','Site Zip Code','APN/PIN','Site Municipal','Site County','Lot Size','Street','Address Line 2','City (Mailing Address)','State (Mailing Address)','Zip (Mailing Address)','Phone','Other Phone','Mobile','Phone 1 (Site Address)','Phone 2 (Site Address)','Phone 3 (Site Address)','Phone 1 (Mailing Address)','Phone 2 (Mailing Address)','Phone 3 (Mailing Address)','Email','AO Project','Group','Site #','AO Link','Site Tier','Utility','Market','Lead Status','IRA Status','Site Lat/Long', 'Robust ID')
+#FOR VIRGINIA colOrder <- c('First Name','Last Name','Company','Site Address','Site City','Site State','Site Zip Code','APN/PIN','Site Municipal','Site County','Buildable Area (Acres) (acre)','Lot Size (acre)','Street','Address Line 2','City (Mailing Address)','State (Mailing Address)','Zip (Mailing Address)','Phone','Other Phone','Mobile','Email','AO Project','Group','Site #','AO Link','Site Tier','Utility','Market','Lead Status','IRA Status','Site Lat/Long Coordinates', 'Robust ID')
+colOrder <- c('First Name','Last Name','Company','Site Address','Site City','Site State','Site Zip Code','APN/PIN','Site Municipal','Site County','Buildable Area (Acres) (acre)','Lot Size (acre)','Street','Address Line 2','City (Mailing Address)','State (Mailing Address)','Zip (Mailing Address)','Phone','Other Phone','Mobile','Email','AO Project','Group','Site #','AO Link','Site Tier','Utility','Market','Lead Status','IRA Status','Site Lat/Long Coordinates', 'Robust ID','Substation',"Distance to Substation")
 
 ordered <- add[, colOrder]
 
