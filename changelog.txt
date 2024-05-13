@@ -1,5 +1,5 @@
 4/2/24
-added in two fields that identify nearest substation and distance to that nearest substation. for exports prior to this new export format, please uncomment line 59 which has the comment #FOR VIRGINIA
+added in two fields that identify nearest substation and distance to that nearest substation. for exports prior to this new export format, please uncomment line 59 which has the comment #FOR VIRGINIA and comment line 60 out.
 2/28/24
 updated site lat/long -> site lat/long coordinates to match SF mapping
 2/27/24
