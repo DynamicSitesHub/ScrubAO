@@ -1,3 +1,6 @@
+4/28/24
+changed IRA status to ITC Adder
+Stars now feed into field "description" and are based on MW star system
 4/2/24
 added in two fields that identify nearest substation and distance to that nearest substation. for exports prior to this new export format, please uncomment line 59 which has the comment #FOR VIRGINIA and comment line 60 out.
 2/28/24
