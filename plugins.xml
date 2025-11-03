@@ -3,7 +3,6 @@
     <pyqgis_plugin name="AO Scrub Tool" version="1.2">
         <description>This plugin will quickly scrub AO exports</description>
         <qgis_minimum_version>2.2</qgis_minimum_version>
-        <file_name>AOScrubTool.zip</file_name>
         <author_name>Ally Smith</author_name>
         <download_url>https://github.com/DynamicSitesHub/ScrubAO/raw/refs/heads/main/AOScrubTool.zip</download_url>
     </pyqgis_plugin>
