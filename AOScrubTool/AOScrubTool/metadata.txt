@@ -1,0 +1,7 @@
+[general]
+name=AO Scrub Tool
+qgisMinimumVersion=3.0
+description=AO Scrub Tool with GUI for combining and cleaning multiple CSV files, including editable Star Rating dropdowns.
+version=1.2
+author=Ally Smith
+email=
