@@ -4,9 +4,9 @@ library(tibble)
 
 ### ONLY CHANGE PARAMETERS HERE, DON'T CHANGE ANYTHING ELSE ###
 setwd("C:/Users/ally.smith/Dynamic Energy Solutions, LLC/GIS Team - Documents/Data/PVCase/AO Lead Exports/Montana/Northwestern/Tier 2") #Folder with a utility's csvs must use / NOT \ in filepaths
-file_list <- list.files(pattern = "Gallatin") # %>% Only change what's between " " that's your search cursor. Smart to do county
+file_list <- list.files(pattern = "Rosebud") # %>% Only change what's between " " that's your search cursor. Smart to do county
 #  lapply(read_csv) #can ignore, line is for other uses
-filename <- "AO MT Search AD (NWE) Tier 2.csv" # Sets your filename only change " " and leave extension as .csv use two digit state abbrev, ## to group, COUNTY to county, # to tier number
+filename <- "AO MT Search AN (NWE) Tier 2.csv" # Sets your filename only change " " and leave extension as .csv use two digit state abbrev, ## to group, COUNTY to county, # to tier number
 tier <- "Tier 2" #change to whatever tier you're doing
 utility <- "NWE" #change to utility name as you want it displayed in final sheet
 market <- "MT" #market you're in as two character abbrev
